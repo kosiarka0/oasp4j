@@ -62,6 +62,21 @@ CREATE TABLE Offer(
 
 );
 
+CREATE TABLE Special(
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  modificationCounter INTEGER NOT NULL,
+  name VARCHAR(255),
+  specialPrice DECIMAL(19, 2) NOT NULL,
+  offerId BIGINT NOT NULL,
+  startingHour INT NOT NULL  CHECK (startingHour >= 0 and startingHour <=24),
+  endingHour INT NOT NULL CHECK (endingHour >= 0 and endingHour <=24),
+  startingDay INT NOT NULL,
+  endingDay INT NOT NULL,
+  CONSTRAINT PK_Special PRIMARY KEY(id),
+  CONSTRAINT FK_Special_offerId FOREIGN KEY(offerId) REFERENCES Offer(id) NOCHECK,
+  CONSTRAINT UC_Special_name UNIQUE(name)
+);
+
 -- *** RestaurantTable (Table is a reserved keyword in Oracle) ***
 CREATE TABLE RestaurantTable(
   id BIGINT NOT NULL AUTO_INCREMENT,
