@@ -62,6 +62,7 @@ CREATE TABLE Offer(
 
 );
 
+-- *** Special ***
 CREATE TABLE Special(
   id BIGINT NOT NULL AUTO_INCREMENT,
   modificationCounter INTEGER NOT NULL,

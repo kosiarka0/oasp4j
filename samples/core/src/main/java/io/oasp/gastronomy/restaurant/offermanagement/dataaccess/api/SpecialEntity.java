@@ -29,7 +29,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
 
   private OfferEntity offer;
 
-  private WeeklyPeriod activePeriod;
+  private WeeklyPeriodEmbeddable activePeriod;
 
   private Money specialPrice;
 
@@ -74,7 +74,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
    * @return activePeriod
    */
   @Embedded
-  public WeeklyPeriod getActivePeriod() {
+  public WeeklyPeriodEmbeddable getActivePeriod() {
 
     return this.activePeriod;
   }
@@ -84,7 +84,11 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
    */
   public void setActivePeriod(WeeklyPeriod activePeriod) {
 
-    this.activePeriod = activePeriod;
+    this.activePeriod = new WeeklyPeriodEmbeddable();
+    this.activePeriod.setEndingDay(activePeriod.getEndingDay());
+    this.activePeriod.setEndingHour(activePeriod.getEndingHour());
+    this.activePeriod.setStartingDay(activePeriod.getEndingDay());
+    this.activePeriod.setStartingHour(activePeriod.getStartingHour());
   }
 
   /**

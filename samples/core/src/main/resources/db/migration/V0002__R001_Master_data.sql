@@ -21,6 +21,8 @@ INSERT INTO Product (id, modificationCounter, alcoholic, dType, description) VAL
 INSERT INTO Product (id, modificationCounter, alcoholic, dType, description) VALUES (13, 1, false, 'Drink', 'Bier');
 INSERT INTO Product (id, modificationCounter, alcoholic, dType, description) VALUES (14, 1, false, 'Drink', 'Wein / Apfelwein');
 
+
+
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (1, 1, 0, 6.99, 1, 7, 12, 'Schnitzel-Menü', 'Description of Schnitzel-Menü');
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (2, 1, 0, 7.99, 2, 8, 13, 'Goulasch-Menü', 'Description of Goulasch-Menü');
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (3, 1, 0, 8.99, 3, 10, 14, 'Pfifferlinge-Menü', 'Description of Pfifferlinge-Menü');
@@ -29,6 +31,7 @@ INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, dr
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (6, 1, 0, 6.23, 5, null, 12, 'Pizza-Menü', 'Description of Pizza-Menü');
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (7, 1, 0, 5.99, 6, null, 12, 'Flammkuchen-Menü', 'Description of Flammkuchen-Menü');
 
+INSERT INTO Special (modificationCounter, name, startingDay, startingHour, endingDay, endingHour, specialPrice, offerId) VALUES( 0, 'Tłusta Pizza', 1, 1, 2, 1, 5.99, 6); 
 
 INSERT INTO RestaurantOrder (id, modificationCounter, tableId, state) VALUES (1, 1, 101, 1);
 
