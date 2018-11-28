@@ -1,5 +1,11 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api;
 
+import java.sql.Blob;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
@@ -16,11 +22,6 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
-
-import java.sql.Blob;
-import java.util.List;
-
-import javax.validation.Valid;
 
 /**
  * Interface for OfferManagement.
@@ -60,6 +61,14 @@ public interface Offermanagement {
   PaginatedListTo<OfferEto> findOfferEtos(OfferSearchCriteriaTo criteria);
 
   /**
+   * Returns a list of offers matching the search criteria.
+   *
+   * @param criteria the {@link OfferSearchCriteriaTo}.
+   * @return the {@link List} of matching {@link OfferEto}s.
+   */
+  PaginatedListTo<OfferEto> findBestOfferEtosAtTheMoment(OfferSearchCriteriaTo criteria, LocalDateTime moment);
+
+  /**
    * Checks, whether a given {@link ProductEto} is in use by at least one {@link OfferEto}.
    *
    * @param product product to check if it is in use
@@ -91,11 +100,11 @@ public interface Offermanagement {
    * @return the generated/updated offer
    */
   OfferEto saveOffer(@Valid OfferEto offer);
-  
+
   SpecialEto saveSpecial(@Valid SpecialEto specialEto);
-  
+
   void deleteSpecial(Long id);
-  
+
   List<SpecialEto> getActiveSpecials(SpecialSearchCriteriaTo searchCriteria);
 
   /**
@@ -227,5 +236,16 @@ public interface Offermanagement {
    * @param productId is the ID of the {@link ProductEto} to delte the picture
    */
   void deleteProductPicture(Long productId);
+
+  /**
+   * @return the {@link List} with all available {@link SpecialEto}s.
+   */
+  List<SpecialEto> findAllSpecials();
+
+  /**
+   * @return the {@link List} with all {@link SpecialEto}s available at {@link List} restricted by
+   *         {@link SpecialSearchCriteriaTo}.
+   * @param criteria are search restriction criteria
+   */
 
 }
