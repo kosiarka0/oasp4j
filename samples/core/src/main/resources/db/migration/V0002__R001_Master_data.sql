@@ -29,6 +29,8 @@ INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, dr
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (6, 1, 0, 6.23, 5, null, 12, 'Pizza-Menü', 'Description of Pizza-Menü');
 INSERT INTO Offer (id, modificationCounter, state, price, mealId, sideDishId, drinkId, name, description) VALUES (7, 1, 0, 5.99, 6, null, 12, 'Flammkuchen-Menü', 'Description of Flammkuchen-Menü');
 
+INSERT INTO Special ( modificationCounter, name, startingDay, startingHour, endingDay, endingHour, specialPrice, offerId) VALUES( 0, 'Fat pizza', 1, 1, 2, 1, 5.99, 6); 
+INSERT INTO Special ( modificationCounter, name, startingDay, startingHour, endingDay, endingHour, specialPrice, offerId) VALUES( 0, 'Thin pizza', 3, 5, 5, 1, 4.99, 6); 
 
 INSERT INTO RestaurantOrder (id, modificationCounter, tableId, state) VALUES (1, 1, 101, 1);
 

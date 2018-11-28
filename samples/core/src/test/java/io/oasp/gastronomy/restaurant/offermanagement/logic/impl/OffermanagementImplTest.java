@@ -1,7 +1,11 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,9 +16,12 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.module.beanmapping.common.api.BeanMapper;
 import io.oasp.module.test.common.base.ModuleTest;
 
@@ -41,6 +48,9 @@ public class OffermanagementImplTest extends ModuleTest {
   private OfferDao offerDao;
 
   @Mock
+  private SpecialDao specialDao;
+
+  @Mock
   private BeanMapper beanMapper;
 
   /**
@@ -53,6 +63,7 @@ public class OffermanagementImplTest extends ModuleTest {
 
     this.offerManagementImpl = new OffermanagementImpl();
     this.offerManagementImpl.setOfferDao(this.offerDao);
+    this.offerManagementImpl.setSpecialDao(this.specialDao);
     this.offerManagementImpl.setBeanMapper(this.beanMapper);
   }
 
@@ -64,6 +75,7 @@ public class OffermanagementImplTest extends ModuleTest {
 
     this.beanMapper = null;
     this.offerDao = null;
+    this.specialDao = null;
     this.offerManagementImpl = null;
   }
 
@@ -110,6 +122,37 @@ public class OffermanagementImplTest extends ModuleTest {
     // then
     assertThat(responseOfferCto).isNotNull();
     assertThat(responseOfferCto.getOffer()).isEqualTo(offerEto);
+
+  }
+
+  @Test
+  public void findAllSpecials() {
+
+    // given
+    SpecialEto eto1 = new SpecialEto();
+    SpecialEto eto2 = new SpecialEto();
+    List<SpecialEto> allEtos = new ArrayList<>();
+    allEtos.add(eto1);
+    allEtos.add(eto2);
+
+    SpecialEntity entity1 = mock(SpecialEntity.class);
+    SpecialEntity entity2 = mock(SpecialEntity.class);
+    List<SpecialEntity> allEntities = new ArrayList<>();
+    allEntities.add(entity1);
+    allEntities.add(entity2);
+
+    when(this.specialDao.findAll()).thenReturn(allEntities);
+    when(this.beanMapper.map(entity1, SpecialEto.class)).thenReturn(eto1);
+    when(this.beanMapper.map(entity2, SpecialEto.class)).thenReturn(eto2);
+
+    // when
+
+    List<SpecialEto> result = this.offerManagementImpl.findAllSpecials();
+
+    // then
+
+    assertNotNull(result);
+    assertThat(result).containsExactlyInAnyOrder(eto1, eto2);
 
   }
 
