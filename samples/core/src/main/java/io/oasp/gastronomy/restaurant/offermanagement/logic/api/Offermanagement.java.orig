@@ -1,11 +1,13 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api;
 
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.Special;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
@@ -18,7 +20,10 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+<<<<<<< Updated upstream
+=======
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialCto;
+>>>>>>> Stashed changes
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
@@ -61,6 +66,14 @@ public interface Offermanagement {
   PaginatedListTo<OfferEto> findOfferEtos(OfferSearchCriteriaTo criteria);
 
   /**
+   * Returns a list of offers matching the search criteria.
+   *
+   * @param criteria the {@link OfferSearchCriteriaTo}.
+   * @return the {@link List} of matching {@link OfferEto}s.
+   */
+  PaginatedListTo<OfferEto> findBestOfferEtosAtTheMoment(OfferSearchCriteriaTo criteria, LocalDateTime moment);
+
+  /**
    * Checks, whether a given {@link ProductEto} is in use by at least one {@link OfferEto}.
    *
    * @param product product to check if it is in use
@@ -92,11 +105,11 @@ public interface Offermanagement {
    * @return the generated/updated offer
    */
   OfferEto saveOffer(@Valid OfferEto offer);
-
+  
   SpecialEto saveSpecial(@Valid SpecialEto specialEto);
-
+  
   void deleteSpecial(Long id);
-
+  
   List<SpecialEto> getActiveSpecials(SpecialSearchCriteriaTo searchCriteria);
 
   /**
@@ -107,6 +120,22 @@ public interface Offermanagement {
    *         no such {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Product} exists.
    */
   ProductEto findProduct(Long id);
+
+  /**
+   * Deletes an {@link SpecialEto} by its {@link Special#getId() id}.
+   *
+   * @param specialId is the {@link SpecialEto#getId() id} that identifies the {@link SpecialEto} to be deleted.
+   */
+  void deleteSpecial(Long specialId);
+
+  /**
+   * If no ID is contained creates the {@link SpecialEto} for the first time. Else it updates the {@link SpecialEto}
+   * with given ID. If no {@link SpecialEto} with given ID is present, an exception will be thrown.
+   *
+   * @param special the {@link SpecialEto} to persist.
+   * @return the generated/updated special
+   */
+  SpecialEto saveSpecial(@Valid SpecialEto special);
 
   /**
    * Gets a {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Product} with a specific revision using its
@@ -229,12 +258,23 @@ public interface Offermanagement {
    */
   void deleteProductPicture(Long productId);
 
-  SpecialEto findSpecial(long id);
+  /**
+   * @return the {@link List} with all available {@link SpecialEto}s.
+   */
+  List<SpecialEto> findAllSpecials();
 
-  List<SpecialEto> findSpecialEtos(SpecialSearchCriteriaTo searchCriteriaTo);
+  /**
+   * @return the {@link List} with all {@link SpecialEto}s available at {@link List} restricted by
+   *         {@link SpecialSearchCriteriaTo}.
+   * @param criteria are search restriction criteria
+   */
+  List<SpecialEto> findSpecials(SpecialSearchCriteriaTo criteria);
 
-  SpecialCto findSpecialCto(long id);
-
-  List<SpecialCto> findSpecialCtos(SpecialSearchCriteriaTo searchCriteriaTo);
+  /**
+   * @return the {@link List} with all {@link SpecialCto}s available at {@link List} restricted by
+   *         {@link SpecialSearchCriteriaTo}.
+   * @param criteria are search restriction criteria
+   */
+  List<SpecialCto> findSpecialCtos(SpecialSearchCriteriaTo criteria);
 
 }

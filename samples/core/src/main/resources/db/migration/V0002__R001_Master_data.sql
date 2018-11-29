@@ -52,3 +52,6 @@ INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastna
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (2, 0, 1, 'waiter', 'Willy', 'Waiter');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (3, 0, 2, 'barkeeper', 'Bianca', 'Barkeeper');
 INSERT INTO StaffMember (id, modificationCounter, role, login, firstname, lastname) VALUES (4, 0, 4, 'manager', 'Johhny', 'Manager');
+
+INSERT INTO Special (modificationCounter, name, startingDay, startingHour, endingDay, endingHour, specialPrice, offerId) VALUES( 0, 'Fat pizza', 1, 1, 2, 1, 5.99, 6); 
+INSERT INTO Special (modificationCounter, name, startingDay, startingHour, endingDay, endingHour, specialPrice, offerId) VALUES( 0, 'Thin pizza', 3, 5, 5, 1, 4.99, 6); 

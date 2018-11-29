@@ -1,17 +1,19 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api.to;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
-import io.oasp.module.jpa.common.api.to.SearchCriteriaTo;
-
 import java.time.LocalDateTime;
 
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
+import io.oasp.module.jpa.common.api.to.SearchCriteriaTo;
+
 /**
- * Criteria for searching @{@link io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity}
- * Contains information about OfferNumber to find by and date of checking for special offer to check if there is sth active.
+ * Criteria for searching @{@link io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity} Contains
+ * information about OfferNumber to find by and date of checking for special offer to check if there is sth active.
  */
 public class SpecialSearchCriteriaTo extends SearchCriteriaTo {
-  /** UID for serialization. */
+
+  /**
+   * UID for serialization.
+   */
   private static final long serialVersionUID = 1L;
 
   private String name;
@@ -22,35 +24,64 @@ public class SpecialSearchCriteriaTo extends SearchCriteriaTo {
 
   private Long offerNumber;
 
+  private Long offerId;
+
+  /**
+   * The constructor.
+   */
+  public SpecialSearchCriteriaTo() {
+
+    super();
+  }
+
   public String getName() {
-    return name;
+
+    return this.name;
   }
 
   public void setName(String name) {
+
     this.name = name;
   }
 
   public LocalDateTime getDateOfCheckingOffers() {
-    return dateOfCheckingOffers;
+
+    return this.dateOfCheckingOffers;
   }
 
   public void setDateOfCheckingOffers(LocalDateTime dateOfCheckingOffers) {
+
     this.dateOfCheckingOffers = dateOfCheckingOffers;
   }
 
   public Money getSpecialPrice() {
-    return specialPrice;
+
+    return this.specialPrice;
   }
 
   public void setSpecialPrice(Money specialPrice) {
+
     this.specialPrice = specialPrice;
   }
 
   public Long getOfferNumber() {
-    return offerNumber;
+
+    return this.offerNumber;
   }
 
   public void setOfferNumber(Long offerNumber) {
+
     this.offerNumber = offerNumber;
   }
+
+  public Long getOfferId() {
+
+    return this.offerId;
+  }
+
+  public void setOfferId(Long offerId) {
+
+    this.offerId = offerId;
+  }
+
 }
