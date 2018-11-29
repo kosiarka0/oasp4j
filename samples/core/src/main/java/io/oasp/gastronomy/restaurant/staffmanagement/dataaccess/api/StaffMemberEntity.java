@@ -11,7 +11,6 @@ import io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember;
 /**
  * The {@link io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity persistent entity} for
  * {@link StaffMember}.
- *
  */
 @Entity
 @Table(name = "StaffMember")
@@ -53,7 +52,8 @@ public class StaffMemberEntity extends ApplicationPersistenceEntity implements S
   /**
    * @return password
    */
-  @Column(name = "password", unique = true)
+  @Column
+  @Override
   public String getPassword() {
 
     return this.password;
@@ -62,6 +62,7 @@ public class StaffMemberEntity extends ApplicationPersistenceEntity implements S
   /**
    * @param password new value of {@link #getpassword}.
    */
+  @Override
   public void setPassword(String password) {
 
     this.password = password;

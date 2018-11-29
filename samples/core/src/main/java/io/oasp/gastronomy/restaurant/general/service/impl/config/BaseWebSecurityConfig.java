@@ -2,6 +2,7 @@ package io.oasp.gastronomy.restaurant.general.service.impl.config;
 
 import javax.inject.Inject;
 import javax.servlet.Filter;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -36,6 +37,9 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
 
   @Inject
   private UserDetailsService userDetailsService;
+
+  @Inject
+  private DataSource dataSource;
 
   private CorsFilter getCorsFilter() {
 
@@ -136,10 +140,10 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @Inject
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-    auth.inMemoryAuthentication().withUser("waiter").password("waiter").roles("Waiter").and().withUser("cook")
-        .password("cook").roles("Cook").and().withUser("barkeeper").password("barkeeper").roles("Barkeeper").and()
-        .withUser("chief").password("chief").roles("Chief").and().withUser("manager").password("manager")
-        .roles("Manager");
+    // .withUser("waiter").password("waiter")
+    // .roles("Waiter").and().withUser("cook").password("cook").roles("Cook").and().withUser("barkeeper")
+    // .password("barkeeper").roles("Barkeeper").and().withUser("chief").password("chief").roles("Chief").and()
+    // .withUser("manager").password("manager").roles("Manager");
   }
 
 }

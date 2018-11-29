@@ -17,6 +17,8 @@ public class UserDetailsClientTo extends AbstractTo implements UserProfile {
 
   private String name;
 
+  private String password;
+
   private String firstName;
 
   private String lastName;
@@ -41,6 +43,22 @@ public class UserDetailsClientTo extends AbstractTo implements UserProfile {
   public String getName() {
 
     return this.name;
+  }
+
+  /**
+   * @return password
+   */
+  public String getPassword() {
+
+    return this.password;
+  }
+
+  /**
+   * @param password new value of {@link #getpassword}.
+   */
+  public void setPassword(String password) {
+
+    this.password = password;
   }
 
   @Override

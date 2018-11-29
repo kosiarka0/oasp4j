@@ -12,7 +12,8 @@ CREATE TABLE StaffMember(
   modificationCounter INTEGER NOT NULL,
   firstname VARCHAR(255),
   lastname VARCHAR(255),
-  login VARCHAR(255),
+  login VARCHAR(255) UNIQUE,
+  password VARCHAR(255),
   role INTEGER,
   CONSTRAINT PK_StaffMember PRIMARY KEY(id),
   CONSTRAINT UC_StaffMember_login UNIQUE(login)
